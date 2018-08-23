@@ -10,19 +10,32 @@ const Issue = React.createClass({
     },
   render() {
        const { post, i } = this.props;
-    return <div>
+       const date= new Date(post.updated_at).toDateString();
+    return <div className="w3-container">
         <Link to={`/view/${post.id}`} onClick={this.handleClick}>
-          <li className="single-photo" key={i}>
-            {post.state === "open"?<p>&#9745;</p>:<p>&#9746;</p>}
-            {post.title}
-            {post.number} {post.comments} {post.updated_at} {post.user.login}
-            <Link className="button" to={`/view/${post.id}`}>
-              <span className="comment-count">
-                <span className="speech-bubble" />
-                {post.comments}
+            <li className="w3-bar" key={i}>
+              <Link to={`/view/${post.id}`}>
+                <span className="w3-bar-item w3-right">
+                  <button className="w3-button w3-white w3-border w3-border-blue w3-round-large">
+                    {post.comments} <i className="fa fa-comments" />
+                  </button>
+                </span>
+              </Link>
+              <span className="w3-bar-item w3-xxlarge">
+                {post.state === "open" ? (
+                  <i className="fa fa-check-circle-o" />
+                ) : (
+                  <i className="fa fa-times-circle-o" />
+                )}
               </span>
-            </Link>
-          </li>
+              <div className="w3-bar-item">
+                <span className="w3-large">{post.title}</span>
+                <br />
+                <span>
+                  #{post.number} opened on {date} by {post.user.login}
+                </span>
+              </div>
+            </li>
         </Link>
       </div>;
   }

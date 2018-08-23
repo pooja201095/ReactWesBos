@@ -29,28 +29,38 @@ const List = React.createClass({
 
   },
   render() {
-    return <div>
-        <p>Issue List page!</p>
-        <div className="selectDropdowns">
-          <h3>Select State</h3>
-          <select id="issueState" name="issueState">
-            <option value="all">All</option>
-            <option value="open">Open</option>
-            <option value="closed">Closed</option>
-          </select>
-          <h3>Filter</h3>
-          <select id="issueSort" name="issueSort">
-            <option value="created-desc">Newest</option>
-            <option value="created-asc">Oldest</option>
-            <option value="comments-desc">Most Commented</option>
-            <option value="comments-asc">Least Commented</option>
-          </select>
-          <button onClick={this.changeState}>Submit</button>
-          <h2>
-            {this.props.repoinfo && this.props.repoinfo.repoinfo && this.props.repoinfo.repoinfo.open_issues_count}
-          </h2>
-        </div>
-        <ul>
+    return <div className="w3-container">
+        <ul className="w3-ul w3-card-4">
+          <li className="w3-bar w3-light-grey">
+            <div className="w3-bar-item">
+              <span>Select State</span>
+              <select id="issueState" name="issueState">
+                <option value="all">All</option>
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+            <div className="w3-bar-item">
+              <span>Filter</span>
+              <select id="issueSort" name="issueSort">
+                <option value="created-desc">Newest</option>
+                <option value="created-asc">Oldest</option>
+                <option value="comments-desc">Most Commented</option>
+                <option value="comments-asc">Least Commented</option>
+              </select>
+            </div>
+            <div className="w3-bar-item">
+            <button onClick={this.changeState}>Submit</button>
+            </div>
+            <div className="w3-bar-item w3-right">
+              <span>
+                {this.props.repoinfo &&
+                  this.props.repoinfo.repoinfo &&
+                  this.props.repoinfo.repoinfo.open_issues_count}{" "}
+                open issues
+              </span>
+            </div>
+          </li>
           {this.props.posts.posts && this.props.posts.posts.map(
               (post, i) => {
                 return <Issue {...this.props} key={i} i={i} post={post} />;
