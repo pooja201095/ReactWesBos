@@ -1,12 +1,4 @@
-//add comments
-export function addComment(issueId, author, comment) {
-  return {
-    type: "ADD_COMMENT",
-    issueId,
-    author,
-    comment
-  };
-}
+
 
 const API = "https://api.github.com/repos";
 

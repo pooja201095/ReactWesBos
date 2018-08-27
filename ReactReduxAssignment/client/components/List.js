@@ -50,14 +50,13 @@ const List = React.createClass({
               </select>
             </div>
             <div className="w3-bar-item">
-            <button onClick={this.changeState}>Submit</button>
+              <button onClick={this.changeState}>Submit</button>
             </div>
             <div className="w3-bar-item w3-right">
+              <i className="fa fa-exclamation-circle" />
               <span>
-                {this.props.repoinfo &&
-                  this.props.repoinfo.repoinfo &&
-                  this.props.repoinfo.repoinfo.open_issues_count}{" "}
-                open issues
+                {this.props.repoinfo && this.props.repoinfo.repoinfo && this.props.repoinfo.repoinfo.open_issues_count}
+                &nbsp;issues
               </span>
             </div>
           </li>
@@ -67,13 +66,16 @@ const List = React.createClass({
               }
             )}
         </ul>
-        <div className="center">
-          <div className="pagination">
-            <button onClick={this.changePage} id="prev">
+        <br />
+        <div className="w3-center">
+          <div className="w3-bar w3-border w3-round">
+            <button onClick={this.changePage} className="w3-bar-item w3-button" id="prev">
               &laquo;
             </button>
-            <button>{this.state && this.state.pageNum}</button>
-            <button onClick={this.changePage} id="next">
+            <button className="w3-bar-item w3-button">
+              {this.state && this.state.pageNum}
+            </button>
+            <button className="w3-bar-item w3-button" onClick={this.changePage} id="next">
               &raquo;
             </button>
           </div>
