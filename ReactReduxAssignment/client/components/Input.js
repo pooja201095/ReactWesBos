@@ -10,17 +10,12 @@ const Input = React.createClass({
   renderRepos(repo, i) {
     const date = new Date(repo.created_at).toDateString();
     var username = this.state.username;
-    return (
-      <Link
-        to={`/${username}/${repo.name}/issues`}
-        onClick={this.handleClick}
-        key={i}
-      >
+    return <Link to={`/${username}/${repo.name}/issues`} onClick={this.handleClick} key={i}>
         <li className="w3-bar" key={i}>
           <Link to={`/${username}/${repo.name}/issues`}>
             <span className="w3-bar-item w3-right">
               <button className="w3-button w3-white w3-border w3-border-blue w3-round-large">
-                {repo.open_issues} <i className="fa fa-comments" />
+                {repo.open_issues} <i className="fa fa-exclamation" />
               </button>
             </span>
           </Link>
@@ -30,8 +25,7 @@ const Input = React.createClass({
             <span>created on {date}</span>
           </div>
         </li>
-      </Link>
-    );
+      </Link>;
   },
   setUsername(e) {
     this.setState({ username: e.target.value});
