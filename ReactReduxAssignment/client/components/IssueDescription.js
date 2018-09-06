@@ -3,7 +3,13 @@ import { Link } from "react-router";
 import IssueInfo from './IssueInfo';
 
 const IssueDescription = React.createClass({
-
+  componentDidMount(){
+    this.state = { localcomment: (this.state && this.state.localcomment) || [] };
+    const username = this.props.params.username;
+    const reponame = this.props.params.repoName;
+    const issueNo = this.props.params.issueNumber;
+    this.props.getComments(username, reponame, issueNo);
+  },
   renderComments(comment,i) {
     const date = new Date(comment.created_at).toLocaleTimeString("en-US");
     console.log("RenderComments Called...!!!",comment,i);
@@ -16,9 +22,6 @@ const IssueDescription = React.createClass({
   },
   handleSubmit(e) {
     e.preventDefault();
-    this.state={
-      localcomment:this.state&&this.state.localcomment || []
-    }
     const date= new Date();
     const user = this.refs.author.value;
     const body = this.refs.comment.value;

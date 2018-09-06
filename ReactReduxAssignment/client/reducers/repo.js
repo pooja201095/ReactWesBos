@@ -3,13 +3,11 @@
 //1.the action (info of what happened)
 //2.copy of current state
 
-function posts(state = [], action) {
-  console.log(state,action);
+function repo(state = [], action) {
+  console.log(state, action);
   switch (action.type) {
-    case "FETCH_REQUEST":
-      return state;
-    case "FETCH_POSTS_SUCCESS":
-      return { ...state, posts: action.payload };
+    case "FETCH_REPOS":
+      return { ...state, repo: action.payload };
     case "FETCH_POSTS_ERROR":
       return state;
     default:
@@ -18,4 +16,4 @@ function posts(state = [], action) {
   return state;
 }
 
-export default posts;
+export default repo;

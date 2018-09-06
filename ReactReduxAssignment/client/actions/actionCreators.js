@@ -7,6 +7,16 @@ export function fetchRequest() {
     type: "FETCH_REQUEST"
   };
 }
+export function fetchReposReq(payload) {
+  return {
+    type: "FETCH_REPOS",
+    payload
+  };
+}
+
+export function fetchselectedissue(payload) {
+         return { type: "FETCH_SLE_ISSUE", payload };
+       }
 
 export function fetchPostsSuccess(payload) {
   return {
@@ -44,7 +54,6 @@ export function fetchError() {
 }
 
   export function fetchIssues(username, repoName, pageNumber, issueState,issueSort) {
-    console.log('abc*********');
            return dispatch => {
              dispatch(fetchRequest());
              return fetchPosts(username, repoName, pageNumber, issueState, issueSort).then(
@@ -67,7 +76,6 @@ function fetchPosts(username, repoName, pageNumber, issueState, issueSort) {
 }
 
 export function getComments(username, repoName, issueNo) {
-         console.log("GetComments Called!!");
          return dispatch => {
            dispatch(fetchRequest());
            return fetchComments(username, repoName, issueNo).then(
