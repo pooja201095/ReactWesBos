@@ -2,16 +2,17 @@ import React,{Component} from "react";
 
 class IssueInfo extends Component{
   componentWillMount() {
-    let currentPost = this.props.posts.posts.filter(post => {
-      return post.id == this.props.params.issueId;
-    });
-    currentPost = currentPost[0];
-    console.log("Issue Info", currentPost);
-    this.state = { currentPost };
+    const username = this.props.params.username;
+    const reponame = this.props.params.repoName;
+    const issueNo = this.props.params.issueNumber;
+    fetch(`https://api.github.com/repos/${username}/${reponame}/issues/${issueNo}`)
+      .then(response => response.json())
+      .then(response => this.props.fetchselectedissue(response));
+
   }
   render() {
-    const currentPost = this.state.currentPost;
-    const date = new Date(currentPost.created_at).toDateString();
+    const currentPost = this.props && this.props.slectedPost && this.props.slectedPost.slectedPost;
+    //const date = new Date(currentPost.created_at).toDateString();
     return <div className="w3-container">
         <div className="w3-container w3-card-2 w3-round-xlarge">
           <div className="w3-bar-item w3-margin">
@@ -29,7 +30,7 @@ class IssueInfo extends Component{
               </button>
               &nbsp;
               <b className="w3-text-dark-grey">{currentPost.user.login}</b>
-              &nbsp;opened this issue on {date}
+              &nbsp;opened this issue on {new Date(currentPost.created_at).toDateString()}
               &nbsp;|
               {currentPost.comments} Comments
             </span>

@@ -10,11 +10,6 @@ const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-// const defaultState={
-//   posts:[],
-//   comments:[],
-//   repoinfo:[]
-// }
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 export const history = syncHistoryWithStore(browserHistory, store); //reason we are able to see all the states in app
 //keeps track of our app navigation,

@@ -5,26 +5,25 @@ import Issue from './Issue';
 
 const List = React.createClass({
   componentDidMount() {
-    console.log("Here");  
-    this.props.issueCount("facebook", "create-react-app");
+    const username = this.props.params.username;
+    const reponame = this.props.params.repoName;
+    this.props.issueCount(username, reponame);
     this.state = { pageNum: 1, issueState: "all", issueSort: "created-desc" }; 
-    console.log("component did mount");
-    this.props.fetchIssues("facebook", "create-react-app", this.state.pageNum, this.state.issueState, this.state.issueSort); 
+    this.props.fetchIssues(username, reponame, this.state.pageNum, this.state.issueState, this.state.issueSort); 
   },
   changePage(e){
-    console.log("ChangePage");
       e.currentTarget.id === "next" ? 
       this.setState({pageNum: ++this.state.pageNum}) : 
        this.state.pageNum>1 ?
       this.setState({ pageNum: --this.state.pageNum}) :
       this.setState({ pageNum: this.state.pageNum});
-      this.props.fetchIssues("facebook", "create-react-app", this.state.pageNum, this.state.issueState, this.state.issueSort);
+      this.props.fetchIssues(this.props.params.username, this.props.params.repoName, this.state.pageNum, this.state.issueState, this.state.issueSort);
   },
   changeState(e){
     const issueState = document.getElementById("issueState").value;
     const issueSort = document.getElementById("issueSort").value;
     this.setState({ issueState: issueState,issueSort:issueSort });
-    this.props.fetchIssues("facebook", "create-react-app", this.state.pageNum, issueState,issueSort);
+    this.props.fetchIssues(this.props.params.username, this.props.params.repoName, this.state.pageNum, issueState, issueSort);
 
 
   },

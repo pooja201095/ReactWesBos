@@ -11,10 +11,8 @@ function postcomments(state = [], action) {
     case "FETCH_REQUEST":
       return null;
     case "FETCH_COMMENT_SUCCESS":
-      console.log("Success comments");
       return { ...state, comments: action.payload };
     case "FETCH_COMMENT_ERROR":
-      console.log("Error");
       return state;
     default:
       return state;
